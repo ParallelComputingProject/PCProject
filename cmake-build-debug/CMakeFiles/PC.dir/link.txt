@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/PC.dir/main.cpp.o  -o PC 

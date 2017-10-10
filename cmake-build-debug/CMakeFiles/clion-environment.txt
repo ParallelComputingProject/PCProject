@@ -1,0 +1,2 @@
+Options: 
+CMake: 3.8.2@/tmp/guest-epq2hp/clion-2017.2.2/bin/cmake/bin/cmake
