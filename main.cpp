@@ -30,9 +30,9 @@ int main() {
 	cin >> len >> dim >> kmn;
 	ifstream infile("data2.txt");
 	//float a, b;
-	float points[len][dim];
+	float points[len][dim+1];
 	for(int i=0; i<len; i++) {
-		for(int j=0; j<dim; j++) {
+		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points[i][j] = a;

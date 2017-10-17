@@ -13,28 +13,32 @@
 	\maketitle
 
 	\section{Introduction}
-    \begin{flushleft}
-      This report focuses on the common problem of clustering data. It involves classifiying different data items that share similar characteristics within the same data set, into groups. By doing this various clusters of data items that share similar characteristics can be identified. One of these problems include the amount of time required to classify each data item into a certain group (cluster). This report will focus solving the perfomrance problem related to clustering.
-    \end{flushleft}
+    	\begin{flushleft}
+      		This report focuses on the common problem of clustering data. It involves classifiying different data items that share similar characteristics within the same data set, into groups. By doing this various clusters of data items that share similar characteristics can be identified. One of these problems include the amount of time required to classify each data item into a certain group (cluster). This report will focus on solving the perfomrance problem related to clustering.
+    	\end{flushleft}
 
-    \begin{flushleft}
-      Since the process of clustering has been know to be quite time consumming, a proposed solutions to this is to parallelise the entire process (i.e the process of clustering the input data). Parallelising this process will allow us to divide the amount of work to cluster the data amonsts diffent processing items.
-    \end{flushleft}
+    	\begin{flushleft}
+      		Since the process of clustering has been know to be quite time consumming, a proposed solutions to this is to parallelise the entire process (i.e the process of clustering the input data). Parallelising this process will allow us to divide the amount of work to cluster the data amonsts diffent processing items and hence cluster multiple data items concurrently.
+    	\end{flushleft}
 
-  \section{Solution technicalities}
-    \begin{flushleft}
+	\section{Solution technicalities}
+  		\begin{flushleft}
+			There are various clustering algorithms that could be used to cluster set of data into various clusters. This project will focus on parallelising the k-means clustering algorithm. In order to solve the above mentioned problem of parallelising the clusterning of data items, it was necesary to first identify the various dependencies that exist within the clustering algorithm.
+    	\end{flushleft}
+    	
+    	\begin{flushleft}
+    		To do this, a serial version of the k-means clustering algothim was designed and in such a way so as to minimise the dependencies within the algorithm. This
+    	\end{flushleft}
 
-    \end{flushleft}
+  	\section{Results analysis}
+    	\begin{flushleft}
+			
+    	\end{flushleft}
 
-  \section{Results analysis}
-    \begin{flushleft}
-
-    \end{flushleft}
-
-  \section{Conclusion}
-    \begin{flushleft}
-
-    \end{flushleft}
+	\section{Conclusion}
+    	\begin{flushleft}
+			
+    	\end{flushleft}
 
 
 \end{document}

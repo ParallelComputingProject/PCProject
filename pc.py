@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import random
 import sys
 
-num_points = input("Enter a number of points: ") # number of points in each cluster
-num_clusters = input("Enter a number of clusters: ") # k
+num_points = input("Enter number of points: ") # number of points in each cluster
+num_clusters = input("Enter number of clusters: ") # k
 cluster_means = [] # matrix of means
 
 for i in range(num_clusters): # read row by row
@@ -29,7 +29,11 @@ for j in range(num_clusters):
 	for l in range(dim):
 		cov[l][l] = covarience[j]
 	coords = np.random.multivariate_normal(mean, cov, num_points)
-	data.extend(coords)
+	#np.full((3, 5), 7) to extend matrix by one column create matrix that has desired dimensions and copy original data onto first part
+	new_points = np.full((num_points, dim+1), j)
+	new_points[:,:-1] = coords
+
+	data.extend(new_points)
 
 lis = range(num_clusters*num_points)
 random.shuffle(lis)
