@@ -1,4 +1,4 @@
-# Install script for directory: /tmp/guest-epq2hp/CLionProjects/PC
+# Install script for directory: /home/acid/Videos/PCProject
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/tmp/guest-epq2hp/CLionProjects/PC/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/acid/Videos/PCProject/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

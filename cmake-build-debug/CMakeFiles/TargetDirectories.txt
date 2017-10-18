@@ -1,3 +1,3 @@
-/tmp/guest-epq2hp/CLionProjects/PC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/tmp/guest-epq2hp/CLionProjects/PC/cmake-build-debug/CMakeFiles/edit_cache.dir
-/tmp/guest-epq2hp/CLionProjects/PC/cmake-build-debug/CMakeFiles/PC.dir
+/home/acid/Videos/PCProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/acid/Videos/PCProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/acid/Videos/PCProject/cmake-build-debug/CMakeFiles/PC.dir
