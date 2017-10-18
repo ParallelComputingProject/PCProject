@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{graphicx}
 \graphicspath{{./}}
+\usepackage{color}
 
 \begin{document}
 
@@ -23,22 +24,32 @@
 
 	\section{Solution technicalities}
   		\begin{flushleft}
-			There are various clustering algorithms that could be used to cluster set of data into various clusters. This project will focus on parallelising the k-means clustering algorithm. In order to solve the above mentioned problem of parallelising the clusterning of data items, it was necesary to first identify the various dependencies that exist within the clustering algorithm.
+			There are various clustering algorithms that could be used to cluster set of data into various clusters. This project will focus on parallelising the k-means clustering algorithm. In order to solve the above mentioned problem, the k-means cluster algorithm will be parallelised. In order to do this, various factors had to be taken into concideration, such as task dependencies, interactions between variouse tasks and mapping of tasks to processes. From this we will be able to determine the variouse factors such as the degree of concurrency.
     	\end{flushleft}
     	
-    	\begin{flushleft}
-    		To do this, a serial version of the k-means clustering algothim was designed and in such a way so as to minimise the dependencies within the algorithm. This
-    	\end{flushleft}
+    	\subsection{Task Dependencies and Interactions}
+    	
+    	\subsection{Task Decomposition}
+    	
+    	\subsection{Process Mapping}
+    	
+    	\subsection{Parallel Algorithm}
+    	\textcolor{red}{How the code was parallelised}
+    	
+    	\subsection{Limitation}
 
   	\section{Results analysis}
     	\begin{flushleft}
 			
     	\end{flushleft}
+    	
+    	\subsection{Perfomance Analysis}
+    	
+    	\subsection{Accurancy}
 
 	\section{Conclusion}
     	\begin{flushleft}
 			
     	\end{flushleft}
-
 
 \end{document}
