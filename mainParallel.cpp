@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+#include <omp.h>
+
 using namespace std;
 float d(float *u, float *x, int dim) {
 	float ans = 0;
@@ -74,6 +76,9 @@ int main() {
 			points[i][j] = (points[i][j]-minV[j])/(maxV[j]-minV[j]);
 	}
 
+
+#pragma omp parallel defaullt(shared) //private()
+#pragma omp for reduction(+:usum) schedule(runtime)
 	/*******************starting k-means********************************/
 	for(int ep=0; ep<100; ep++) { //fix the number of iterations
 		/************************* storing u averages as sums***********/
@@ -93,6 +98,9 @@ int main() {
 				u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
 		} //usum[i][dim] represents the number of elements in the cluster
 	}
+
+
+
 	/**********************writing to file**********************/
 	ofstream myfile;
 	myfile.open ("data.txt");
