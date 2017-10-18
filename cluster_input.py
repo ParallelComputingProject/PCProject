@@ -26,4 +26,5 @@ for i in range(num_clusters):
 	
 	file.write("\n")
 
+
 file.write(variance)
