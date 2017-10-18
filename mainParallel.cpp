@@ -14,6 +14,7 @@ float d(float *u, float *x, int dim) {
 int getCluster(float **u, float *x, int dim, int kmn) {
 	int indx = 0;
 	float minD = d(u[0], x, dim);
+
 	for(int j=0; j<kmn; j++) {
 		if(d(u[j], x, dim) < minD) {
 			minD = d(u[j], x, dim); //update min
@@ -24,7 +25,7 @@ int getCluster(float **u, float *x, int dim, int kmn) {
 }
 
 int main() {
-/*************serial***************************/
+/*******************Parallel***************************/
 
 	/***********read in data************************/
 	int len, dim, kmn;
@@ -33,7 +34,7 @@ int main() {
 	ifstream infile("data2.txt");
 	//float a, b;
 	float points[len][dim];
-	for(int i=0; i<len; i++) {
+	for(int i=0; i<len; i++) { //need this to partition the data.
 		for(int j=0; j<dim; j++) {
 			float a;
 			infile >> a;
@@ -77,8 +78,8 @@ int main() {
 	}
 
 
-#pragma omp parallel defaullt(shared) //private()
-#pragma omp for reduction(+:usum) schedule(runtime)
+//#pragma omp parallel default(shared) //private()
+//#pragma omp for reduction(+:usum) schedule(runtime)
 	/*******************starting k-means********************************/
 	for(int ep=0; ep<100; ep++) { //fix the number of iterations
 		/************************* storing u averages as sums***********/
