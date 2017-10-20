@@ -15,16 +15,20 @@
 
 	\section{Introduction}
     	\begin{flushleft}
-      		This report focuses on the common problem of clustering data. It involves classifiying different data items that share similar characteristics within the same data set, into groups. By doing this various clusters of data items that share similar characteristics can be identified. One of these problems include the amount of time required to classify each data item into a certain group (cluster). This report will focus on solving the perfomrance problem related to clustering.
+      		This report focuses on the common problem of clustering data. It involves classifiying different data items that share similar characteristics within the same data set, into groups. By doing this, various clusters of data items that share similar characteristics can be identified. One of the problems that arises in trying to cluster data includes the amount of time required to classify each data item into a certain group (cluster). This report will focus on solving the performance problem related to clustering.
     	\end{flushleft}
 
-    	\begin{flushleft}
-      		Since the process of clustering has been know to be quite time consumming, a proposed solutions to this is to parallelise the entire process (i.e the process of clustering the input data). Parallelising this process will allow us to divide the amount of work to cluster the data amonsts diffent processing items and hence cluster multiple data items concurrently.
-    	\end{flushleft}
+      \begin{flushleft}
+          To solve the clustering problem introduced, an algorithm that classifies and groups the data based on their characteristics should be developed. Since the process of clustering is quite time consuming in itself, a proposed solution to this is to parallelise the entire process (i.e the process of clustering the input data). Parallelising this process will allow us to divide the amount of work involved in clustering the data amongst different processing items and hence cluster multiple data items concurrently.
+      \end{flushleft}
+
+      \begin{flushleft}
+          There were different algorithms to consider in order to solve the problem of clustering. Due to the fact that exclusive clustering is a requirement in our solution to the problem, we will focus on the \textit{K-Means} algorithm, instead of counterparts like \textit{C-Means} and \textit{Hierarchial} clustering algorithms. The \textit{K-Means} works by picking $k$ initial centroids then through iterating will produce $k$ exclusive clusters. It is apparent that when the size of the dataset becomes increasingly large, the $k$-means and its clustering process will become increasingly slow. This will lead us to computing sections of the algorithm simultaneously through parallelisation techniques.
+      \end{flushleft}
 
 	\section{Solution technicalities}
   		\begin{flushleft}
-			There are various clustering algorithms that could be used to cluster set of data into various clusters. This project will focus on parallelising the k-means clustering algorithm. In order to solve the above mentioned problem, the k-means cluster algorithm will be parallelised. In order to do this, various factors had to be taken into concideration, such as task dependencies, interactions between variouse tasks and mapping of tasks to processes. From this we will be able to determine the variouse factors such as the degree of concurrency.
+  			There are various clustering algorithms that could be used to cluster set of data into various clusters. This project will focus on using as well as parallelising the k-means clustering algorithm. In order to solve the above mentioned problem, the k-means cluster algorithm will be parallelised. In order to do this, various factors had to be taken into concideration, such as task dependencies, interactions between various tasks and mapping of tasks to processes. From this we will be able to determine the various factors such as the degree of concurrency.
     	\end{flushleft}
     	
     	\subsection{Task Dependencies and Interactions}
