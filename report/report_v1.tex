@@ -90,26 +90,48 @@
     			\end{flushleft}
     	
     	\subsection{Parallel Algorithm}
-    	\textcolor{red}{Ishmael: How the code was parallelised?}
+    		\begin{flushleft}
+    			Various techniques were tested to parallelise the algorithm. With parallelising the K-Means itself, there was a noticeable slow down. 
+This led to the partitioning of the input data. The algorithm partitions the data and assigns them to a fixed number of processes.
+We have our tasks as classifying each data point to a cluster. Our parallel algorithm also has the reducing of the averages of the data points in the k clusters parallelised.
+    		\end{flushleft}
+    		
+    		\begin{flushleft}
+    			The algorithm takes as input the number of points, dimension of the points and k as well as the data list. The data list has the format (x,y,...,z,t) i.e. the points and t, the cluster in which the point belongs. It then partitions and classifies the data as first come first serve. The algorithm then takes the averages in serial.
+    		\end{flushleft}
+    		
+    		\begin{flushleft}
+    			This process is continued a fixed number of times.
+    		\end{flushleft}
     	
     	\subsection{Limitation}
  			\begin{flushleft}
- 				Although the although parallelising the algorithm will enhance the performance of the algorithm, there are certain factors that limit the performance of the parallel algorithm. These limitations restrict various aspects of the parallel algorithm such as the number of tasks that we can partition the algorithm into. Some of these limitations include the number of processors on the underlying machine.
+ 				Although the parallelising of the algorithm will enhance the performance of the algorithm, there are certain factors that limit the performance. These limitations restrict various aspects of the parallel algorithm such as the number of tasks that we can partition the algorithm into. Some of these limitations include the number of processors on the underlying machine as having too many tasks will lead to increased communication overheads and thus slow down the parallel algorithm. 
+ 			\end{flushleft}
+ 			\begin{flushleft}
+ 				As a result of this limitation, the optimal number of tasks on the machine used to test the performance of the algorithm was 8 tasks. This optimal number of tasks will change depending on the capabilities of that machine.
  			\end{flushleft}
 
   	\section{Results analysis}
     	\begin{flushleft}
-			Fixed iterations
+			Once the algorithm was parallelised, it’s performance was evaluated and compared to that of the serial version. This evaluation was carried out by comparing the performance of both algorithms with varying input data sizes. This was done in order to determine if the parallelised version has indeed solved the problem as well as to what degree this improvement was.
     	\end{flushleft}
     	
     	\subsection{Perfomance Analysis}
     		\begin{flushleft}
-    			
+    			Figure 3 summarises the performance of the parallel algorithm compared to the serial version. For small number of input data items, the serial performs faster, but as the size of the input data increases the parallel algorithms begins to perform faster. From this we can see that for very large input data, the parallel algorithm will perform significantly faster.
     		\end{flushleft}
+    		
+    		\begin{figure}
+    			\begin{center}
+    				\includegraphics[scale=0.4]{performance.png}
+    			\end{center}
+    			\caption{Performance of parallel vs serial}
+    		\end{figure}
     	
 	\section{Conclusion}
     	\begin{flushleft}
-			
+			In parallelising the k-means algorithm, various factors were taken into account and it was decomposed using input data partitioning. With this we had multiple tasks running concurrently to classify the data point into different clusters. The performance of the parallel algorithm was then evaluated and compared to the serial version. There was a noticeable improvement in the perform of the parallel version as compared to the serial one. With increasing sizes of input data points the parallel algorithms was faster in classifying the data points. AS such we can conclude that the parallel version was able to solve the problem.
     	\end{flushleft}
 
 \end{document}
