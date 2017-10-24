@@ -119,8 +119,15 @@ We have our tasks as classifying each data point to a cluster. Our parallel algo
     	
     	\subsection{Perfomance Analysis}
     		\begin{flushleft}
-    			
+    			Figure 3 summarises the performance of the parallel algorithm compared to the serial version. For small number of input data items, the serial performs faster, but as the size of the input data increases the parallel algorithms begins to perform faster. From this we can see that for very large input data, the parallel algorithm will perform significantly faster.
     		\end{flushleft}
+    		
+    		\begin{figure}
+    			\begin{center}
+    				\includegraphics[scale=0.4]{performance.png}
+    			\end{center}
+    			\caption{Performance of parallel vs serial}
+    		\end{figure}
     	
 	\section{Conclusion}
     	\begin{flushleft}
