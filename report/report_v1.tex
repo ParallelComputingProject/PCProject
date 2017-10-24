@@ -19,20 +19,20 @@
     	\end{flushleft}
 
       	\begin{flushleft}
-        	  To solve the clustering problem introduced, an algorithm that classifies and groups the data based on their characteristics should be developed. Since the process of clustering is quite time consuming in itself, a proposed solution to this is to parallelise the entire process (i.e the process of clustering the input data). Parallelising this process will allow us to divide the amount of work involved in clustering the data amongst different processing items and hence cluster multiple data items concurrently.
+        	  To solve the clustering problem introduced, an algorithm that classifies and groups the data based on their characteristics should be developed. Since the process of clustering is quite time consuming in itself, a proposed solution to this is to parallelise the entire process (i.e the process of clustering the input data). Parallelising this process will allow us to divide the amount of work involved in clustering the data amongst different processing items and hence classify multiple data items concurrently.
       	\end{flushleft}
 
       	\begin{flushleft}
-        	There were different algorithms to consider in order to solve the problem of clustering. Due to the fact that exclusive clustering is a requirement in our solution to the problem, we will focus on the \textit{K-Means} algorithm, instead of counterparts like \textit{C-Means} and \textit{Hierarchial} clustering algorithms. The \textit{K-Means} works by picking $k$ initial centroids then through iterating will produce $k$ exclusive clusters. It is apparent that when the size of the dataset becomes increasingly large, the $k$-means and its clustering process will become increasingly slow. This will lead us to computing sections of the algorithm simultaneously through parallelisation techniques.
+        	There were different algorithms to consider in order to solve the problem. Due to the fact that exclusive clustering is a requirement in our solution to the problem, we will focus on the \textit{K-Means} algorithm, instead of counterparts like \textit{C-Means} and \textit{Hierarchial} clustering algorithms. The \textit{K-Means} works by picking $k$ initial centroids then through iterating will produce $k$ exclusive clusters. It is apparent that when the size of the dataset becomes increasingly large, the $k$-means and its clustering process will become increasingly slow. This will lead us to computing sections of the algorithm simultaneously through parallelisation techniques.
       	\end{flushleft}
 
 	\section{Solution technicalities}
   		\begin{flushleft}
-  			There are various clustering algorithms that could be used to cluster set of data into various clusters. This project will focus on using as well as parallelising the k-means clustering algorithm. In order to solve the above mentioned problem, the k-means cluster algorithm will be parallelised. When parallelising the algorithm, various tasks are identified and ran concurrently.
+  			There are various clustering algorithms that could be used to cluster set of data into various clusters. In order to solve the above mentioned problem, the k-means algorithm was chosen to be parallelised since it can be partitioned into various tasks that can be run concurrently relatively easily.
     	\end{flushleft}
     	
     	\begin{flushleft}
-    		In order to do this, various factors had to be taken into consideration, such as the dependencies and interactions between the various tasks. From this we will be able to determine the various factors such as the degree of concurrency. Next we determine the most efficient way to map tasks to processes. 
+    		In order to parallelise this algorithm, various factors had to be taken into consideration, such as the dependencies and interactions between the various tasks. From this we will be able to determine the various factors such as the degree of concurrency.
     	\end{flushleft}
     	
     	\subsection{Task Decomposition}
@@ -41,15 +41,15 @@
     		\end{flushleft}
     	
     		\begin{flushleft}
-    			The K-means algorithm takes in a large set of data items and then classifies the data items into k separate clusters. It does this defining cluster center at random places and assigning each data item to the closest center. From this, k clusters will be formed. Once this is done, it then takes the average of each cluster, reassigns the center of the cluster as this mean and then repeats the process.
+    			The K-means algorithm takes in a large set of data items and then classifies the data items into k separate clusters. It does this by defining k cluster center at random places and assigning each data item to the closest center. From this, k clusters will be formed. Once this is done, it then takes the average of each cluster, reassigns the center of the cluster as this mean and then repeats the process.
     		\end{flushleft}
     	
     		\begin{flushleft}
-    			From this, it is clear to see that we can decompose the input data and classify multiple data items in into k clusters simultaneously. This decomposition technique is referred to as input data partitioning. The input data is partitioned across various tasks where each tasks classifies each data item in its dataset into one of the k clusters.
+    			From this, it is clear to see that we can decompose the input data and classify multiple data items in into k clusters simultaneously. This decomposition technique is referred to as input data partitioning. The input data is partitioned across various tasks where each task classifies each data item in its dataset into one of the k clusters.
     		\end{flushleft}
     	
     		\begin{flushleft}
-    			Furthermore, since the algorithm has to calculate a the averages of each cluster, once all the data items have been classified under the k clusters, and reassign the centers of the clusters as these means, it is clear that this part of that algorithm must be performed in serial. That is, the algorithm cannot execute again until the new centers have been set and hence this section of the algorithm cannot be decomposed into smaller tasks.
+    			Furthermore, since the algorithm has to calculate a the averages of each cluster, once all the data items have been classified under the k clusters, and reassign the centers of the clusters as these means, it is clear that this part of that algorithm must be performed in serial.
     		\end{flushleft}
     	
     	\subsection{Task Dependencies and Interactions}
@@ -80,7 +80,7 @@
     			
     			\begin{figure}
     				\begin{center}
-    					\includegraphics[scale=0.3]{task_interaction_1.png}
+    					\includegraphics[scale=0.3]{task_interaction_3.png}
     				\end{center}
     				\caption{Task Interaction graph}
     			\end{figure}
@@ -99,19 +99,14 @@
 
   	\section{Results analysis}
     	\begin{flushleft}
-			
+			Fixed iterations
     	\end{flushleft}
     	
     	\subsection{Perfomance Analysis}
     		\begin{flushleft}
-    		
-    		\end{flushleft}
-    	
-    	\subsection{Accurancy}
-    		\begin{flushleft}
     			
     		\end{flushleft}
-
+    	
 	\section{Conclusion}
     	\begin{flushleft}
 			
