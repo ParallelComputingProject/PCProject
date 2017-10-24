@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.7)  20 OCT 2017 13:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.22)  24 OCT 2017 02:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **report_v1.tex
 (./report_v1.tex
 LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 5 language(s) loaded.
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -152,25 +152,39 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] (./report_v1.aux) 
-) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<task_dependency_graph_2.png, id=14, 1213.53375pt x 738.76pt>
+File: task_dependency_graph_2.png Graphic file (type png)
+
+<use task_dependency_graph_2.png>
+Package pdftex.def Info: task_dependency_graph_2.png used on input line 71.
+(pdftex.def)             Requested size: 364.06294pt x 221.6297pt.
+ [3]
+<task_interaction_1.png, id=19, 1103.12125pt x 532.99126pt>
+File: task_interaction_1.png Graphic file (type png)
+
+<use task_interaction_1.png>
+Package pdftex.def Info: task_interaction_1.png used on input line 83.
+(pdftex.def)             Requested size: 330.93893pt x 159.8986pt.
+ [4 <./task_dependency_graph_2.png>] [5 <./task_interaction_1.png>] (./report_v
+1.aux) ) 
 Here is how much of TeX's memory you used:
- 1535 strings out of 494910
- 21952 string characters out of 6179836
- 76761 words of memory out of 5000000
- 4833 multiletter control sequences out of 15000+600000
- 8848 words of font info for 31 fonts, out of 8000000 for 9000
- 36 hyphenation exceptions out of 8191
- 38i,6n,23p,741b,201s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on report_v1.pdf (3 pages, 63840 bytes).
+ 1548 strings out of 493029
+ 22260 string characters out of 6136234
+ 82452 words of memory out of 5000000
+ 5087 multiletter control sequences out of 15000+600000
+ 9155 words of font info for 32 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 38i,7n,23p,740b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on report_v1.pdf (5 pages, 149121 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 45 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
