@@ -2,6 +2,23 @@
 #include <fstream>
 #include <random>
 #include <omp.h>
+#include "omp.h"
+#include "stdio.h"
+#include <chrono>
+#include <vector>
+#include <ios>
+#include <fstream>
+#include <string>
+#include <math.h>
+#include <random>
+#include <cstdlib>
+#include <ctime>
+
+
+typedef std::chrono::high_resolution_clock Time;
+typedef std::chrono::duration<float> fsec;
+
+
 using namespace std;
 float d(float *u, float *x, int dim) {
 	float ans = 0;
@@ -210,6 +227,9 @@ int main() {
 			points08[i][j] = (points08[i][j]-minV[j])/(maxV[j]-minV[j]);
 		}
 	}
+
+	auto start = Time::now();
+	omp_set_num_threads(8);
 	#pragma omp parallel
 	{
 		/*******************starting k-means********************************/
@@ -336,6 +356,10 @@ int main() {
 			}
 		}
 	}
+	auto end = Time::now();
+	fsec time = end - start;
+
+	cout << "The time is " << time.count() << endl;
 
 	/**********************writing to file**********************/
 	ofstream myfile;

@@ -1,6 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+
+typedef std::chrono::high_resolution_clock Time;
+typedef std::chrono::duration<float> fsec;
+
 using namespace std;
 float d(float *u, float *x, int dim) {
 	float ans = 0;
@@ -75,6 +79,7 @@ int main() {
 	}
 
 	/*******************starting k-means********************************/
+    auto start = Time::now();
 	for(int ep=0; ep<100; ep++) { //fix the number of iterations
 		/************************* storing u averages as sums***********/
 		for(int i=0; i<kmn; i++) {
@@ -88,11 +93,15 @@ int main() {
 			usum[index][dim] += 1.0f; //increment number of points in this cluster
 		}
 		for(int i=0; i<kmn; i++) {
-			cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+			//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
 			for(int j=0; j<dim; j++)
 				u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
 		} //usum[i][dim] represents the number of elements in the cluster
 	}
+    auto end = Time::now();
+    fsec time = end - start;
+
+    cout << "The time is " << time.count() << endl;
 	/**********************writing to file**********************/
 	ofstream myfile;
 	myfile.open ("data.txt");

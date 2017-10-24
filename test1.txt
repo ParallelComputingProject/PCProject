@@ -1,5 +1,1 @@
-<<<<<<< bd6bd5e7dc8daff49eb3a046e3026948a3e6a3bd
-1000000 2 3
-=======
-6000 2 6
->>>>>>> Updated bash scripts.
+43400 2 7
