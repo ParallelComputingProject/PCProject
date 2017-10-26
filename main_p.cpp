@@ -18,6 +18,8 @@
 typedef std::chrono::high_resolution_clock Time;
 typedef std::chrono::duration<float> fsec;
 
+std::ofstream timeData;
+
 
 using namespace std;
 float d(float *u, float *x, int dim) {
@@ -65,49 +67,49 @@ int main() {
 			points01[i][j] = a;
 		}
 	}
-	for(int i=perBlock; i<2*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points02[i][j] = a;
 		}
 	}
-	for(int i=2*perBlock; i<3*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points03[i][j] = a;
 		}
 	}
-	for(int i=3*perBlock; i<4*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points04[i][j] = a;
 		}
 	}
-	for(int i=4*perBlock; i<5*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points05[i][j] = a;
 		}
 	}
-	for(int i=5*perBlock; i<6*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points06[i][j] = a;
 		}
 	}
-	for(int i=6*perBlock; i<7*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points07[i][j] = a;
 		}
 	}
-	for(int i=7*perBlock; i<8*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
@@ -129,7 +131,6 @@ int main() {
 			u[i][j] = dis(gen);
 	}
 	//storing the sums
-	float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
 
 
 	/********normalizing with min-max********************************/
@@ -235,124 +236,183 @@ int main() {
 		/*******************starting k-means********************************/
 		for(int ep=0; ep<100; ep++) { //fix the number of iterations
 			/************************* storing u averages as sums***********/
-			for(int i=0; i<kmn; i++) {
-				for(int j=0; j<=dim; j++)
-					usum[i][j] = 0.0f;
-			}
-
 			#pragma omp sections
 			{
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points01[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points01[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points02[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points02[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points03[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points03[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points04[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points04[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points05[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points05[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points06[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points06[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points07[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points07[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 				#pragma omp section
 				{
+					float usum[kmn][dim+1]; //the x1, x2, ..., xdim, n in cluster
+					for(int i=0; i<kmn; i++) {
+						for(int j=0; j<=dim; j++)
+							usum[i][j] = 0.0f;
+					}
 					for(int i=0; i<perBlock; i++) { // each data point
 						int index = getCluster(u, points08[i], dim, kmn); //index of cluster
 						/****update the sum of the centre*****/
 						for(int k=0; k<dim; k++) usum[index][k] += points08[i][k];
 						usum[index][dim] += 1.0f; //increment number of points in this cluster
 					}
-					for(int i=0; i<kmn; i++) {
-						cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
-						for(int j=0; j<dim; j++)
-							u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
-					} //usum[i][dim] represents the number of elements in the cluster
+					#pragma omp critical
+					{
+						for(int i=0; i<kmn; i++) {
+							//cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+							for(int j=0; j<dim; j++)
+								u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+						} //usum[i][dim] represents the number of elements in the cluster
+					}
 				}
 			}
 		}
@@ -360,7 +420,17 @@ int main() {
 	auto end = Time::now();
 	fsec time = end - start;
 
-	cout << "The time is " << time.count() << endl;
+	//Write times to file
+	timeData.open("times/Data.csv", std::ios_base::app);
+	string toSave;
+	toSave.append(to_string(len)+",")
+			.append(to_string(kmn)+",")
+			.append(to_string(time.count()))
+			.append("\n");
+	timeData << toSave;
+	timeData.close();
+
+	cout << "The running time is " << time.count() << endl;
 
 	/**********************writing to file**********************/
 	ofstream myfile;

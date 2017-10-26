@@ -67,49 +67,49 @@ int main() {
 			points01[i][j] = a;
 		}
 	}
-	for(int i=perBlock; i<2*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points02[i][j] = a;
 		}
 	}
-	for(int i=2*perBlock; i<3*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points03[i][j] = a;
 		}
 	}
-	for(int i=3*perBlock; i<4*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points04[i][j] = a;
 		}
 	}
-	for(int i=4*perBlock; i<5*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points05[i][j] = a;
 		}
 	}
-	for(int i=5*perBlock; i<6*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points06[i][j] = a;
 		}
 	}
-	for(int i=6*perBlock; i<7*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
 			points07[i][j] = a;
 		}
 	}
-	for(int i=7*perBlock; i<8*perBlock; i++) {
+	for(int i=0; i<perBlock; i++) {
 		for(int j=0; j<dim+1; j++) {
 			float a;
 			infile >> a;
