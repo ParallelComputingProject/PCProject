@@ -18,6 +18,8 @@
 typedef std::chrono::high_resolution_clock Time;
 typedef std::chrono::duration<float> fsec;
 
+std::ofstream timeData;
+
 
 using namespace std;
 float d(float *u, float *x, int dim) {
@@ -360,7 +362,17 @@ int main() {
 	auto end = Time::now();
 	fsec time = end - start;
 
-	cout << "The time is " << time.count() << endl;
+	//Write times to file
+	timeData.open("times/Data.csv", std::ios_base::app);
+	string toSave;
+	toSave.append(to_string(len)+",")
+			.append(to_string(kmn)+",")
+			.append(to_string(time.count()))
+			.append("\n");
+	timeData << toSave;
+	timeData.close();
+
+	cout << "The running time is " << time.count() << endl;
 
 	/**********************writing to file**********************/
 	ofstream myfile;
